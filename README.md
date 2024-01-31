@@ -59,3 +59,45 @@ https://github.com/DMezhenskyi/angular-webworker-example
 
 templet outlet
 https://github.com/joshuamorony/ng-template-outlet-example
+
+cdkstepper-component
+
+https://medium.com/acute-angular/angular-how-to-build-a-custom-cdkstep-in-a-cdkstepper-component-8b67e9863838
+https://stackoverflow.com/questions/53344873/angular-material-stepper-header-lines-styling
+
+  providers: [
+ {
+ provide: STEPPER_GLOBAL_OPTIONS,
+ useValue: {
+  displayDefaultIndicatorType: false,
+ },
+ },
+ ],
+
+
+
+
+
+
+
+Mat-Table
+
+https://benjamin-maisonneuve1.medium.com/smart-mat-table-part-3-inject-column-d7994c904383
+https://stackblitz.com/edit/mat-table-with-injectable-column?file=src%2Fapp%2Fexample-component.html&source=post_page-----d7994c904383--------------------------------
+
+
+https://decodedscript.com/angular-material-table-dynamic-columns-and-event/
+https://github.com/decodedscript/angular-material-table-dynamic-columns
+https://stackoverflow.com/questions/75212133/placing-several-common-columns-for-angular-table-in-an-ng-template
+https://stackoverflow.com/questions/38311480/change-css-style-of-angular-material-data-table
+
+https://medium.com/vendasta/wrapping-angular-material-table-styling-it-once-drag-drop-sorting-b1765c995b40
+https://github.com/matteson/drag-drop-data-table
+
+
+tr.mat-header-row {
+    height: 35px;
+}
+tr.mat-row:nth-child(even) {
+    background-color: $alternateColor;
+}
