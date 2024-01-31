@@ -56,3 +56,6 @@ https://stackoverflow.com/questions/54760371/how-to-change-height-in-mat-form-fi
 
 service worker
 https://github.com/DMezhenskyi/angular-webworker-example
+
+templet outlet
+https://github.com/joshuamorony/ng-template-outlet-example
