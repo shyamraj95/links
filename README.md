@@ -49,3 +49,10 @@ https://stackoverflow.com/questions/54760371/how-to-change-height-in-mat-form-fi
   @include mat.tooltip-density($density);
   @include mat.tree-density($density);
 }
+
+
+
+
+
+service worker
+https://github.com/DMezhenskyi/angular-webworker-example
