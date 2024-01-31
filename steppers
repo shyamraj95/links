@@ -1,0 +1,118 @@
+Angular — how to build a custom CdkStep in a CdkStepper component
+Krishnan Mudaliar
+Acute Angular
+Krishnan Mudaliar
+
+·
+Follow
+
+Published in
+Acute Angular
+
+·
+3 min read
+·
+Oct 25, 2022
+36
+
+
+1
+
+
+
+Custom icons in cdk-step
+custom icons in a custom stepper
+There are many articles on how to build a custom stepper using Angular Material CDK’s CdkStepperModule. Here are a few of the top results as of writing this article.
+
+Angular Material official guide
+An indepth.dev article (from Jun 2020 but still gold)
+These articles are very clear and simple to follow. So, I am not going to repeat what is in there. But, let me summarize it very briefly:
+
+Create a custom-stepper.component.ts inheriting CdkStepper. After that, you can use the custom component like how you use <mat-stepper>, including features like CdkStepper.linear, CdkStep.editable, CdkStep.label, etc.
+
+Here’s a snippet inspired from the Angular Material guide.
+
+// Custom stepper definition
+@Component({
+  selector: "app-custom-stepper",
+  template: `
+    <header>
+      <button cdkStepperPrevious>&larr;</button>
+      <!-- Loop through all steps and present them in the UI -->
+      <ng-container *ngFor="let step of steps; let i = index;">
+        <button [class.active]="selectedIndex === i" (click)="selectedIndex = i">
+            <span>{{ step.label }} (Step {{ i + 1}})</span>
+        </button>
+      </ng-container>
+      <button cdkStepperNext>&rarr;</button>
+    </header>
+    <div [style.display]="selected ? 'block' : 'none'">
+      <!-- Content from the CdkStep is projected here -->
+      <ng-container [ngTemplateOutlet]="selected.content"></ng-container>
+    </div>
+    `,
+  // This custom stepper provides itself as CdkStepper so that it can be recognized by other components
+  providers: [{ provide: CdkStepper, useExisting: CustomStepperComponent }]
+})
+export class CustomStepperComponent extends CdkStepper {
+}
+
+// Custom stepper usage
+<app-custom-stepper linear>
+  <cdk-step [editable]="false" label="Biodata">
+    <p>Content for "Step 1" - Biodata</p>
+  </cdk-step>
+  <cdk-step label="Picture">
+    <p>Content of "Step 2" - Take a picture</p>
+  </cdk-step>
+</app-custom-stepper>
+However, if you realize, we are still not able to truly customize the heading tab of each step, for e.g., I cannot show an icon along with the label text in the header, where the icon is different per step. It would be ideal to property-bind the icon name, like <cdk-step label="Biodata" icon="person">.
+
+In this short article, we will see how we can achieve this functionality.
+
+It is quite simple, actually.
+
+Create a custom-step.component.ts inheriting CdkStep.
+In component decorator, provide for CdkStep using CustomStepComponent instead of CdkStep.
+Set the template of CustomStepComponent same as that of CdkStep component. (Reference: CdkStep source code)
+Let’s see how the code looks like.
+
+@Component({
+    selector: 'app-custom-step',
+    template: '<ng-template><ng-content></ng-content></ng-template>', // Step 3
+    providers: [{ provide: CdkStep, useExisting: StepComponent }], // Step 2
+})
+export class CustomStepComponent extends CdkStep { // Step 1
+    @Input() icon?: string;
+}
+This way, you can define custom properties in the step component that can then be used inside CustomStepperComponent’s template. Let’s see an example.
+
+<header>
+  <button cdkStepperPrevious>&larr;</button>
+  <!-- Loop through all steps and present them in the UI -->
+  <ng-container *ngFor="let step of steps; let i = index;">
+    <button [class.active]="selectedIndex === i" (click)="onClick(i)">
+      <span>{{ step.label }} (Step {{ i + 1}})</span>
+      <mat-icon *ngIf="step.icon">{{ step.icon }}</mat-icon>
+    </button>
+  </ng-container>
+  <button cdkStepperNext>&rarr;</button>
+</header>
+Finally, in the component that uses app-custom-stepper, you can pass the icon property into each custom step as you want.
+
+<app-custom-stepper linear>
+  <app-custom-step label="Biodata" icon="person">
+    <p>Content for "Step 1" - Biodata</p>
+  </app-custom-step>
+  <app-custom-step label="Picture" icon="photo">
+    <p>Content of "Step 2" - Take a picture</p>
+  </app-custom-step>
+</app-custom-stepper>
+Slick!
+
+Bonus: There is one thing I missed here. The above technique will throw an error if your Angular application is in strict mode with angularCompilerOptions.strictTemplates = true. As the name suggests, strictTemplates does a strict type-checking of data bindings in templates too, not only TS code. In our case, the data-type of CdkStepper.steps is QueryList<CdkStep>. But, in CustomStepperComponent’s template (Line 7), we are trying to access step.icon which is a property of CustomStepComponent, not CdkStep. Hence the error.
+
+To fix this, you should override CdkStepper.steps property’s definition in CustomStepperComponent.
+
+readonly steps: QueryList<CustomStepComponent> = new QueryList<CustomStepComponent>();
+The template is now able to recognize the icon property of the instance of CustomStepComponent. This code does not break the base class CdkStepper code either because CustomStepComponent inherits CdkStep, the original data-type of steps property.
