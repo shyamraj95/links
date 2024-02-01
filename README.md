@@ -101,3 +101,11 @@ tr.mat-header-row {
 tr.mat-row:nth-child(even) {
     background-color: $alternateColor;
 }
+
+
+ grid system built with SASS and CSS grid
+https://gist.github.com/wiegertschouten/443f7e061d1fc656b229ac4b5b0faece
+https://www.halo-lab.com/blog/implementing-a-grid-system-using-a-simple-hand-written-single-pass-compiler-in-sass
+https://inspirationalpixels.com/grid-system-with-sass/
+
+
