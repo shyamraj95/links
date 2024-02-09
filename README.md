@@ -119,4 +119,7 @@ https://jenil.github.io/chota/#!
 // CodAffection
 https://github.com/CodAffection?tab=repositories
 
+snackbar
+https://stackoverflow.com/questions/42761039/how-to-use-snackbar-on-service-to-use-in-every-component-in-angular-2
+
 
