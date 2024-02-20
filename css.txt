@@ -1,0 +1,114 @@
+How can i create a Bootstrap like 12 column ( only grid ) grid system using new CSS GRID Layout
+
+https://stackoverflow.com/questions/46571804/how-can-i-create-a-bootstrap-like-12-column-only-grid-grid-system-using-new
+
+
+https://css-tricks.com/look-ma-no-media-queries-responsive-layouts-using-css-grid/
+https://inspirationalpixels.com/grid-system-with-sass/
+
+https://github.com/nomadcoders/scss-masterclass
+https://github.com/nomadcoders/css-masterclass
+https://flexboxfroggy.com/
+https://cssgridgarden.com/
+
+https://stylus-lang.com/
+https://lesscss.org/
+
+
+.box{
+}
+.box:nth-child(2){
+}
+// chang the order without html
+.box:nth-child(2){
+order:1;
+}
+main axis vs cross axis flexbox
+
+default direction of flex container (row)
+where is the main axis on the direction row (horizontal)
+where is the main axis on the direction colum(vertical)
+
+
+align self and align-item
+align-content
+flex-wrap:wrap respect the width of child and nowrap ignored the child width
+
+flex-shrink:2;       // box shrink double of other here 0 is default
+flex-grow:1;        // box shrink double of other here 1 is default
+Flex-basis:300      //given the initial size of element
+flex-flow =flex-direction + flex-wrap
+
+____________
+display:grid;
+grip-template-columns:repeat(4,200px);
+we can use 1Fr insted of 200px , 1fr mean tak full available width
+grip-template-rows:repeat(4,200px);
+1fr does not on row because row don't have width 
+gap:
+
+
+grid-template-areas:
+
+grid-area:"name of contents"
+
+Example:
+
+.grid{
+display:grid;
+grip-template-columns:auto 200px;
+grid-template-areas:"header header header header"
+}
+.header{
+    grid-area:"header"
+}
+
+_______________
+grid-column-start:1;
+grid-column-end:4;
+
+above shortcut is 
+grid-column:1 / 4;
+or 
+
+grid-column:1 / -1;
+-1 mean last of the column
+Or
+grid-column:span 4;
+span 4  mean start from 1st cell and to 4th cell
+__________________
+
+
+grid template::"header header header header" 1Fr;
+
+1Fr hight of row
+
+
+
+______________
+
+align-item use for verical alignments
+justify-item use for horizontal alignments
+
+place-items: y axis / x axis
+Or
+place-items: vertical / horizontal
+
+place-items = align-item / justify-item
+
+___________________________
+
+align-self:end;
+justify-self:center;
+shortcut of above
+place-self:end center;
+________________
+.item*20>{$}  // class name item and number of elements 20 amd $ mean number range
+__________________
+grid-auto-rows :100px;      auto matically set the row size
+
+
+justify-self work on grid items
+align-item  work on grid container
+
+
