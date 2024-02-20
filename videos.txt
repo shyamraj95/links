@@ -1,0 +1,5 @@
+1 11 Welcome to the Course
+2 21 A Quick Overview of Tables
+3 22 Creating Responsive Tables
+4 23 Implementing Table Pagination and Sorting
+5 24 Accessibility Concerns and Best Practices

@@ -1,0 +1,39 @@
+@media only screen and (max-width: 720px) {
+table,
+thead,
+tbody.
+th,
+td,
+tr {
+display: block;
+)
+thead {
+position: absolute;
+opacity: 0;
+}
+
+tr {
+margin: 1rem 0;
+}
+td {
+border-bottom: 1px solid #eee;
+display: grid;
+grid-template-column: 1fr 2fr;
+}
+td:last-child {
+border: 0;
+}
+td::before (
+margin-right: auto;
+font-weight: bold;
+}
+
+td:ntn-of-type(1)::before { content: 'Name'; }
+td:ntn-of-type(2)::before { content: 'Location'; )
+td:ntn-of-type(3)::before { content: 'Speciality'; }
+td:ntn-of-type(4)::before { content: 'Availability"; }
+td:ntn-of-type(5)::before { content: 'Email'; }
+}
+
+
+// responsive tables   library
