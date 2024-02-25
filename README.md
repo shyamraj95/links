@@ -123,3 +123,9 @@ snackbar
 https://stackoverflow.com/questions/42761039/how-to-use-snackbar-on-service-to-use-in-every-component-in-angular-2
 
 
+
+github.com/kesarhim/account-stack
+www.intertech.com/angular-component-tutorial-inputs-outputs-and-eventemitters/
+
+github.com/padamchick/RecipeBook
+
